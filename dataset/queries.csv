@@ -1,0 +1,16 @@
+question_id,question
+1,What is the Transformer architecture?
+2,Why does the Transformer use self-attention?
+3,What are the limitations of recurrent neural networks?
+4,How does the encoder-decoder architecture work?
+5,What is scaled dot-product attention?
+6,What is multi-head attention?
+7,What is positional encoding?
+8,How does the Transformer encoder work?
+9,How does the Transformer decoder work?
+10,Why is masking used in the decoder?
+11,What datasets were used to train the Transformer?
+12,Which optimizer was used to train the model?
+13,What is label smoothing?
+14,How does the Transformer improve parallelization?
+15,What were the experimental results of the Transformer?

@@ -1,0 +1,640 @@
+﻿query,rank,document,similarity_score
+What is the Transformer architecture?,1,"[10], consuming the previously generated symbols as additional input when generating the next.
+2
+Figure 1: The Transformer - model architecture.
+The Transformer follows this overall architecture using stacked self-attention and point-wise, fully
+connected layers for both the encoder and decoder, shown in the left and right halves of Figure 1,
+respectively.
+3.1 Encoder and Decoder Stacks
+Encoder: The encoder is composed of a stack of N = 6 identical layers. Each layer has two",0.316
+What is the Transformer architecture?,2,"To the best of our knowledge, however, the Transformer is the first transduction model relying
+entirely on self-attention to compute representations of its input and output without using sequence-
+aligned RNNs or convolution. In the following sections, we will describe the Transformer, motivate
+self-attention and discuss its advantages over models such as [17, 18] and [9].
+3 Model Architecture
+Most competitive neural sequence transduction models have an encoder-decoder structure [5, 2, 35].",0.2406
+What is the Transformer architecture?,3,"In this work we propose the Transformer, a model architecture eschewing recurrence and instead
+relying entirely on an attention mechanism to draw global dependencies between input and output.
+The Transformer allows for significantly more parallelization and can reach a new state of the art in
+translation quality after being trained for as little as twelve hours on eight P100 GPUs.
+2 Background
+The goal of reducing sequential computation also forms the foundation of the Extended Neural GPU",0.2256
+What is the Transformer architecture?,4,"single-precision floating-point capacity of each GPU 5.
+6.2 Model Variations
+To evaluate the importance of different components of the Transformer, we varied our base model
+in different ways, measuring the change in performance on English-to-German translation on the
+5We used values of 2.8, 3.7, 6.0 and 9.5 TFLOPS for K80, K40, M40 and P100, respectively.
+8
+Table 3: Variations on the Transformer architecture. Unlisted values are identical to those of the base",0.2059
+What is the Transformer architecture?,5,"performing models also connect the encoder and decoder through an attention
+mechanism. We propose a new simple network architecture, the Transformer,
+based solely on attention mechanisms, dispensing with recurrence and convolutions
+entirely. Experiments on two machine translation tasks show these models to
+be superior in quality while being more parallelizable and requiring significantly
+less time to train. Our model achieves 28.4 BLEU on the WMT 2014 English-",0.1874
+Why does the Transformer use self-attention?,1,"To the best of our knowledge, however, the Transformer is the first transduction model relying
+entirely on self-attention to compute representations of its input and output without using sequence-
+aligned RNNs or convolution. In the following sections, we will describe the Transformer, motivate
+self-attention and discuss its advantages over models such as [17, 18] and [9].
+3 Model Architecture
+Most competitive neural sequence transduction models have an encoder-decoder structure [5, 2, 35].",0.2447
+Why does the Transformer use self-attention?,2,"In this work we employ h = 8 parallel attention layers, or heads. For each of these we use
+dk = dv = dmodel/h = 64. Due to the reduced dimension of each head, the total computational cost
+is similar to that of single-head attention with full dimensionality.
+3.2.3 Applications of Attention in our Model
+The Transformer uses multi-head attention in three different ways:
+• In ""encoder-decoder attention"" layers, the queries come from the previous decoder layer,",0.2441
+Why does the Transformer use self-attention?,3,"In this section we compare various aspects of self-attention layers to the recurrent and convolu-
+tional layers commonly used for mapping one variable-length sequence of symbol representations
+(x1, ..., xn) to another sequence of equal length (z1, ..., zn), with xi, zi ∈ Rd, such as a hidden
+layer in a typical sequence transduction encoder or decoder. Motivating our use of self-attention we
+consider three desiderata.",0.2137
+Why does the Transformer use self-attention?,4,"Recurrent Neural Network Grammar [8].
+In contrast to RNN sequence-to-sequence models [37], the Transformer outperforms the Berkeley-
+Parser [29] even when training only on the WSJ training set of 40K sentences.
+7 Conclusion
+In this work, we presented the Transformer, the first sequence transduction model based entirely on
+attention, replacing the recurrent layers most commonly used in encoder-decoder architectures with
+multi-headed self-attention.",0.1918
+Why does the Transformer use self-attention?,5,"described in section 3.2.
+Self-attention, sometimes called intra-attention is an attention mechanism relating different positions
+of a single sequence in order to compute a representation of the sequence. Self-attention has been
+used successfully in a variety of tasks including reading comprehension, abstractive summarization,
+textual entailment and learning task-independent sentence representations [4, 27, 28, 22].",0.1882
+What are the limitations of recurrent neural networks?,1,"arXiv:1706.03762v7  [cs.CL]  2 Aug 2023
+1 Introduction
+Recurrent neural networks, long short-term memory [13] and gated recurrent [7] neural networks
+in particular, have been firmly established as state of the art approaches in sequence modeling and
+transduction problems such as language modeling and machine translation [ 35, 2, 5]. Numerous
+efforts have since continued to push the boundaries of recurrent language models and encoder-decoder
+architectures [38, 24, 15].",0.3806
+What are the limitations of recurrent neural networks?,2,"[7] Junyoung Chung, Çaglar Gülçehre, Kyunghyun Cho, and Yoshua Bengio. Empirical evaluation
+of gated recurrent neural networks on sequence modeling. CoRR, abs/1412.3555, 2014.
+[8] Chris Dyer, Adhiguna Kuncoro, Miguel Ballesteros, and Noah A. Smith. Recurrent neural
+network grammars. In Proc. of NAACL, 2016.
+[9] Jonas Gehring, Michael Auli, David Grangier, Denis Yarats, and Yann N. Dauphin. Convolu-
+tional sequence to sequence learning. arXiv preprint arXiv:1705.03122v2, 2017.",0.2361
+What are the limitations of recurrent neural networks?,3,"the maximum path length between any two input and output positions in networks composed of the
+different layer types.
+As noted in Table 1, a self-attention layer connects all positions with a constant number of sequentially
+executed operations, whereas a recurrent layer requires O(n) sequential operations. In terms of
+computational complexity, self-attention layers are faster than recurrent layers when the sequence
+6",0.2095
+What are the limitations of recurrent neural networks?,4,"Recurrent Neural Network Grammar [8].
+In contrast to RNN sequence-to-sequence models [37], the Transformer outperforms the Berkeley-
+Parser [29] even when training only on the WSJ training set of 40K sentences.
+7 Conclusion
+In this work, we presented the Transformer, the first sequence transduction model based entirely on
+attention, replacing the recurrent layers most commonly used in encoder-decoder architectures with
+multi-headed self-attention.",0.1904
+What are the limitations of recurrent neural networks?,5,"[32] Noam Shazeer, Azalia Mirhoseini, Krzysztof Maziarz, Andy Davis, Quoc Le, Geoffrey Hinton,
+and Jeff Dean. Outrageously large neural networks: The sparsely-gated mixture-of-experts
+layer. arXiv preprint arXiv:1701.06538, 2017.
+[33] Nitish Srivastava, Geoffrey E Hinton, Alex Krizhevsky, Ilya Sutskever, and Ruslan Salakhutdi-
+nov. Dropout: a simple way to prevent neural networks from overfitting. Journal of Machine
+Learning Research, 15(1):1929–1958, 2014.",0.1874
+How does the encoder-decoder architecture work?,1,"[10], consuming the previously generated symbols as additional input when generating the next.
+2
+Figure 1: The Transformer - model architecture.
+The Transformer follows this overall architecture using stacked self-attention and point-wise, fully
+connected layers for both the encoder and decoder, shown in the left and right halves of Figure 1,
+respectively.
+3.1 Encoder and Decoder Stacks
+Encoder: The encoder is composed of a stack of N = 6 identical layers. Each layer has two",0.3958
+How does the encoder-decoder architecture work?,2,"• In ""encoder-decoder attention"" layers, the queries come from the previous decoder layer,
+and the memory keys and values come from the output of the encoder. This allows every
+position in the decoder to attend over all positions in the input sequence. This mimics the
+typical encoder-decoder attention mechanisms in sequence-to-sequence models such as
+[38, 2, 9].
+• The encoder contains self-attention layers. In a self-attention layer all of the keys, values",0.3303
+How does the encoder-decoder architecture work?,3,"• The encoder contains self-attention layers. In a self-attention layer all of the keys, values
+and queries come from the same place, in this case, the output of the previous layer in the
+encoder. Each position in the encoder can attend to all positions in the previous layer of the
+encoder.
+• Similarly, self-attention layers in the decoder allow each position in the decoder to attend to
+all positions in the decoder up to and including that position. We need to prevent leftward",0.2807
+How does the encoder-decoder architecture work?,4,"In this work we employ h = 8 parallel attention layers, or heads. For each of these we use
+dk = dv = dmodel/h = 64. Due to the reduced dimension of each head, the total computational cost
+is similar to that of single-head attention with full dimensionality.
+3.2.3 Applications of Attention in our Model
+The Transformer uses multi-head attention in three different ways:
+• In ""encoder-decoder attention"" layers, the queries come from the previous decoder layer,",0.21
+How does the encoder-decoder architecture work?,5,"performing models also connect the encoder and decoder through an attention
+mechanism. We propose a new simple network architecture, the Transformer,
+based solely on attention mechanisms, dispensing with recurrence and convolutions
+entirely. Experiments on two machine translation tasks show these models to
+be superior in quality while being more parallelizable and requiring significantly
+less time to train. Our model achieves 28.4 BLEU on the WMT 2014 English-",0.1881
+What is scaled dot-product attention?,1,"3
+Scaled Dot-Product Attention
+ Multi-Head Attention
+Figure 2: (left) Scaled Dot-Product Attention. (right) Multi-Head Attention consists of several
+attention layers running in parallel.
+of the values, where the weight assigned to each value is computed by a compatibility function of the
+query with the corresponding key.
+3.2.1 Scaled Dot-Product Attention
+We call our particular attention ""Scaled Dot-Product Attention"" (Figure 2). The input consists of",0.7622
+What is scaled dot-product attention?,2,"into a matrix Q. The keys and values are also packed together into matrices K and V . We compute
+the matrix of outputs as:
+Attention(Q, K, V) = softmax(QK T √dk )V (1)
+The two most commonly used attention functions are additive attention [2], and dot-product (multi-
+plicative) attention. Dot-product attention is identical to our algorithm, except for the scaling factor",0.3868
+What is scaled dot-product attention?,3,"masking, combined with fact that the output embeddings are offset by one position, ensures that the
+predictions for position i can depend only on the known outputs at positions less than i.
+3.2 Attention
+An attention function can be described as mapping a query and a set of key-value pairs to an output,
+where the query, keys, values, and output are all vectors. The output is computed as a weighted sum
+3
+Scaled Dot-Product Attention
+ Multi-Head Attention",0.2805
+What is scaled dot-product attention?,4,"We call our particular attention ""Scaled Dot-Product Attention"" (Figure 2). The input consists of
+queries and keys of dimension dk, and values of dimension dv. We compute the dot products of the
+query with all keys, divide each by √dk, and apply a softmax function to obtain the weights on the
+values.
+In practice, we compute the attention function on a set of queries simultaneously, packed together
+into a matrix Q. The keys and values are also packed together into matrices K and V . We compute",0.2746
+What is scaled dot-product attention?,5,"While for small values of dk the two mechanisms perform similarly, additive attention outperforms
+dot product attention without scaling for larger values of dk [3]. We suspect that for large values of
+dk, the dot products grow large in magnitude, pushing the softmax function into regions where it has
+extremely small gradients 4. To counteract this effect, we scale the dot products by 1√dk .
+3.2.2 Multi-Head Attention",0.2593
+What is multi-head attention?,1,"In this work we employ h = 8 parallel attention layers, or heads. For each of these we use
+dk = dv = dmodel/h = 64. Due to the reduced dimension of each head, the total computational cost
+is similar to that of single-head attention with full dimensionality.
+3.2.3 Applications of Attention in our Model
+The Transformer uses multi-head attention in three different ways:
+• In ""encoder-decoder attention"" layers, the queries come from the previous decoder layer,",0.4414
+What is multi-head attention?,2,"3
+Scaled Dot-Product Attention
+ Multi-Head Attention
+Figure 2: (left) Scaled Dot-Product Attention. (right) Multi-Head Attention consists of several
+attention layers running in parallel.
+of the values, where the weight assigned to each value is computed by a compatibility function of the
+query with the corresponding key.
+3.2.1 Scaled Dot-Product Attention
+We call our particular attention ""Scaled Dot-Product Attention"" (Figure 2). The input consists of",0.3548
+What is multi-head attention?,3,"masking, combined with fact that the output embeddings are offset by one position, ensures that the
+predictions for position i can depend only on the known outputs at positions less than i.
+3.2 Attention
+An attention function can be described as mapping a query and a set of key-value pairs to an output,
+where the query, keys, values, and output are all vectors. The output is computed as a weighted sum
+3
+Scaled Dot-Product Attention
+ Multi-Head Attention",0.2313
+What is multi-head attention?,4,"into a matrix Q. The keys and values are also packed together into matrices K and V . We compute
+the matrix of outputs as:
+Attention(Q, K, V) = softmax(QK T √dk )V (1)
+The two most commonly used attention functions are additive attention [2], and dot-product (multi-
+plicative) attention. Dot-product attention is identical to our algorithm, except for the scaling factor",0.2085
+What is multi-head attention?,5,"in the distance between positions, linearly for ConvS2S and logarithmically for ByteNet. This makes
+it more difficult to learn dependencies between distant positions [ 12]. In the Transformer this is
+reduced to a constant number of operations, albeit at the cost of reduced effective resolution due
+to averaging attention-weighted positions, an effect we counteract with Multi-Head Attention as
+described in section 3.2.",0.2014
+What is positional encoding?,1,"Recurrent O(n · d2) O(n) O(n)
+Convolutional O(k · n · d2) O(1) O(logk(n))
+Self-Attention (restricted) O(r · n · d) O(1) O(n/r)
+3.5 Positional Encoding
+Since our model contains no recurrence and no convolution, in order for the model to make use of the
+order of the sequence, we must inject some information about the relative or absolute position of the
+tokens in the sequence. To this end, we add ""positional encodings"" to the input embeddings at the",0.3224
+What is positional encoding?,2,"sinusoidal positional encoding with learned positional embeddings [9], and observe nearly identical
+results to the base model.
+6.3 English Constituency Parsing
+To evaluate if the Transformer can generalize to other tasks we performed experiments on English
+constituency parsing. This task presents specific challenges: the output is subject to strong structural
+constraints and is significantly longer than the input. Furthermore, RNN sequence-to-sequence",0.2878
+What is positional encoding?,3,"tokens in the sequence. To this end, we add ""positional encodings"" to the input embeddings at the
+bottoms of the encoder and decoder stacks. The positional encodings have the same dimension dmodel
+as the embeddings, so that the two can be summed. There are many choices of positional encodings,
+learned and fixed [9].
+In this work, we use sine and cosine functions of different frequencies:
+P E(pos,2i) = sin(pos/100002i/dmodel)
+P E(pos,2i+1) = cos(pos/100002i/dmodel)",0.2014
+What is positional encoding?,4,"P E(pos,2i) = sin(pos/100002i/dmodel)
+P E(pos,2i+1) = cos(pos/100002i/dmodel)
+where pos is the position and i is the dimension. That is, each dimension of the positional encoding
+corresponds to a sinusoid. The wavelengths form a geometric progression from 2π to 10000 · 2π. We
+chose this function because we hypothesized it would allow the model to easily learn to attend by
+relative positions, since for any fixed offset k, P Epos+k can be represented as a linear function of
+P Epos.",0.1369
+What is positional encoding?,5,"P Epos.
+We also experimented with using learned positional embeddings [9] instead, and found that the two
+versions produced nearly identical results (see Table 3 row (E)). We chose the sinusoidal version
+because it may allow the model to extrapolate to sequence lengths longer than the ones encountered
+during training.
+4 Why Self-Attention
+In this section we compare various aspects of self-attention layers to the recurrent and convolu-",0.1026
+How does the Transformer encoder work?,1,"[10], consuming the previously generated symbols as additional input when generating the next.
+2
+Figure 1: The Transformer - model architecture.
+The Transformer follows this overall architecture using stacked self-attention and point-wise, fully
+connected layers for both the encoder and decoder, shown in the left and right halves of Figure 1,
+respectively.
+3.1 Encoder and Decoder Stacks
+Encoder: The encoder is composed of a stack of N = 6 identical layers. Each layer has two",0.2892
+How does the Transformer encoder work?,2,"Recurrent Neural Network Grammar [8].
+In contrast to RNN sequence-to-sequence models [37], the Transformer outperforms the Berkeley-
+Parser [29] even when training only on the WSJ training set of 40K sentences.
+7 Conclusion
+In this work, we presented the Transformer, the first sequence transduction model based entirely on
+attention, replacing the recurrent layers most commonly used in encoder-decoder architectures with
+multi-headed self-attention.",0.2511
+How does the Transformer encoder work?,3,"• In ""encoder-decoder attention"" layers, the queries come from the previous decoder layer,
+and the memory keys and values come from the output of the encoder. This allows every
+position in the decoder to attend over all positions in the input sequence. This mimics the
+typical encoder-decoder attention mechanisms in sequence-to-sequence models such as
+[38, 2, 9].
+• The encoder contains self-attention layers. In a self-attention layer all of the keys, values",0.2015
+How does the Transformer encoder work?,4,"• The encoder contains self-attention layers. In a self-attention layer all of the keys, values
+and queries come from the same place, in this case, the output of the previous layer in the
+encoder. Each position in the encoder can attend to all positions in the previous layer of the
+encoder.
+• Similarly, self-attention layers in the decoder allow each position in the decoder to attend to
+all positions in the decoder up to and including that position. We need to prevent leftward",0.1967
+How does the Transformer encoder work?,5,"In this work we employ h = 8 parallel attention layers, or heads. For each of these we use
+dk = dv = dmodel/h = 64. Due to the reduced dimension of each head, the total computational cost
+is similar to that of single-head attention with full dimensionality.
+3.2.3 Applications of Attention in our Model
+The Transformer uses multi-head attention in three different ways:
+• In ""encoder-decoder attention"" layers, the queries come from the previous decoder layer,",0.1963
+How does the Transformer decoder work?,1,"In this work we employ h = 8 parallel attention layers, or heads. For each of these we use
+dk = dv = dmodel/h = 64. Due to the reduced dimension of each head, the total computational cost
+is similar to that of single-head attention with full dimensionality.
+3.2.3 Applications of Attention in our Model
+The Transformer uses multi-head attention in three different ways:
+• In ""encoder-decoder attention"" layers, the queries come from the previous decoder layer,",0.2578
+How does the Transformer decoder work?,2,"Recurrent Neural Network Grammar [8].
+In contrast to RNN sequence-to-sequence models [37], the Transformer outperforms the Berkeley-
+Parser [29] even when training only on the WSJ training set of 40K sentences.
+7 Conclusion
+In this work, we presented the Transformer, the first sequence transduction model based entirely on
+attention, replacing the recurrent layers most commonly used in encoder-decoder architectures with
+multi-headed self-attention.",0.2527
+How does the Transformer decoder work?,3,"• In ""encoder-decoder attention"" layers, the queries come from the previous decoder layer,
+and the memory keys and values come from the output of the encoder. This allows every
+position in the decoder to attend over all positions in the input sequence. This mimics the
+typical encoder-decoder attention mechanisms in sequence-to-sequence models such as
+[38, 2, 9].
+• The encoder contains self-attention layers. In a self-attention layer all of the keys, values",0.2146
+How does the Transformer decoder work?,4,"[10], consuming the previously generated symbols as additional input when generating the next.
+2
+Figure 1: The Transformer - model architecture.
+The Transformer follows this overall architecture using stacked self-attention and point-wise, fully
+connected layers for both the encoder and decoder, shown in the left and right halves of Figure 1,
+respectively.
+3.1 Encoder and Decoder Stacks
+Encoder: The encoder is composed of a stack of N = 6 identical layers. Each layer has two",0.1951
+How does the Transformer decoder work?,5,"In this work we propose the Transformer, a model architecture eschewing recurrence and instead
+relying entirely on an attention mechanism to draw global dependencies between input and output.
+The Transformer allows for significantly more parallelization and can reach a new state of the art in
+translation quality after being trained for as little as twelve hours on eight P100 GPUs.
+2 Background
+The goal of reducing sequential computation also forms the foundation of the Extended Neural GPU",0.1831
+Why is masking used in the decoder?,1,"all positions in the decoder up to and including that position. We need to prevent leftward
+information flow in the decoder to preserve the auto-regressive property. We implement this
+inside of scaled dot-product attention by masking out (setting to −∞) all values in the input
+of the softmax which correspond to illegal connections. See Figure 2.
+3.3 Position-wise Feed-Forward Networks
+In addition to attention sub-layers, each of the layers in our encoder and decoder contains a fully",0.2648
+Why is masking used in the decoder?,2,"sub-layers in each encoder layer, the decoder inserts a third sub-layer, which performs multi-head
+attention over the output of the encoder stack. Similar to the encoder, we employ residual connections
+around each of the sub-layers, followed by layer normalization. We also modify the self-attention
+sub-layer in the decoder stack to prevent positions from attending to subsequent positions. This
+masking, combined with fact that the output embeddings are offset by one position, ensures that the",0.1858
+Why is masking used in the decoder?,3,"• In ""encoder-decoder attention"" layers, the queries come from the previous decoder layer,
+and the memory keys and values come from the output of the encoder. This allows every
+position in the decoder to attend over all positions in the input sequence. This mimics the
+typical encoder-decoder attention mechanisms in sequence-to-sequence models such as
+[38, 2, 9].
+• The encoder contains self-attention layers. In a self-attention layer all of the keys, values",0.1823
+Why is masking used in the decoder?,4,"• The encoder contains self-attention layers. In a self-attention layer all of the keys, values
+and queries come from the same place, in this case, the output of the previous layer in the
+encoder. Each position in the encoder can attend to all positions in the previous layer of the
+encoder.
+• Similarly, self-attention layers in the decoder allow each position in the decoder to attend to
+all positions in the decoder up to and including that position. We need to prevent leftward",0.1335
+Why is masking used in the decoder?,5,"LayerNorm(x + Sublayer(x)), where Sublayer(x) is the function implemented by the sub-layer
+itself. To facilitate these residual connections, all sub-layers in the model, as well as the embedding
+layers, produce outputs of dimension dmodel = 512.
+Decoder: The decoder is also composed of a stack of N = 6identical layers. In addition to the two
+sub-layers in each encoder layer, the decoder inserts a third sub-layer, which performs multi-head",0.126
+What datasets were used to train the Transformer?,1,"inference to input length + 50, but terminate early when possible [38].
+Table 2 summarizes our results and compares our translation quality and training costs to other model
+architectures from the literature. We estimate the number of floating point operations used to train a
+model by multiplying the training time, the number of GPUs used, and an estimate of the sustained
+single-precision floating-point capacity of each GPU 5.
+6.2 Model Variations",0.1893
+What datasets were used to train the Transformer?,2,"We are excited about the future of attention-based models and plan to apply them to other tasks. We
+plan to extend the Transformer to problems involving input and output modalities other than text and
+to investigate local, restricted attention mechanisms to efficiently handle large inputs and outputs
+such as images, audio and video. Making generation less sequential is another research goals of ours.
+The code we used to train and evaluate our models is available at https://github.com/",0.1847
+What datasets were used to train the Transformer?,3,"performing models also connect the encoder and decoder through an attention
+mechanism. We propose a new simple network architecture, the Transformer,
+based solely on attention mechanisms, dispensing with recurrence and convolutions
+entirely. Experiments on two machine translation tasks show these models to
+be superior in quality while being more parallelizable and requiring significantly
+less time to train. Our model achieves 28.4 BLEU on the WMT 2014 English-",0.1641
+What datasets were used to train the Transformer?,4,"Recurrent Neural Network Grammar [8].
+In contrast to RNN sequence-to-sequence models [37], the Transformer outperforms the Berkeley-
+Parser [29] even when training only on the WSJ training set of 40K sentences.
+7 Conclusion
+In this work, we presented the Transformer, the first sequence transduction model based entirely on
+attention, replacing the recurrent layers most commonly used in encoder-decoder architectures with
+multi-headed self-attention.",0.1533
+What datasets were used to train the Transformer?,5,"the competitive models.
+On the WMT 2014 English-to-French translation task, our big model achieves a BLEU score of 41.0,
+outperforming all of the previously published single models, at less than 1/4 the training cost of the
+previous state-of-the-art model. The Transformer (big) model trained for English-to-French used
+dropout rate Pdrop = 0.1, instead of 0.3.
+For the base models, we used a single model obtained by averaging the last 5 checkpoints, which",0.15
+Which optimizer was used to train the model?,1,"(3.5 days).
+5.3 Optimizer
+We used the Adam optimizer [20] with β1 = 0.9, β2 = 0.98 and ϵ = 10−9. We varied the learning
+rate over the course of training, according to the formula:
+lrate = d−0.5 model · min(step_num−0.5, step_num · warmup_steps−1.5) (3)
+This corresponds to increasing the learning rate linearly for the first warmup_steps training steps,
+and decreasing it thereafter proportionally to the inverse square root of the step number. We used
+warmup_steps = 4000.
+5.4 Regularization",0.2712
+Which optimizer was used to train the model?,2,"inference to input length + 50, but terminate early when possible [38].
+Table 2 summarizes our results and compares our translation quality and training costs to other model
+architectures from the literature. We estimate the number of floating point operations used to train a
+model by multiplying the training time, the number of GPUs used, and an estimate of the sustained
+single-precision floating-point capacity of each GPU 5.
+6.2 Model Variations",0.2069
+Which optimizer was used to train the model?,3,"the competitive models.
+On the WMT 2014 English-to-French translation task, our big model achieves a BLEU score of 41.0,
+outperforming all of the previously published single models, at less than 1/4 the training cost of the
+previous state-of-the-art model. The Transformer (big) model trained for English-to-French used
+dropout rate Pdrop = 0.1, instead of 0.3.
+For the base models, we used a single model obtained by averaging the last 5 checkpoints, which",0.1722
+Which optimizer was used to train the model?,4,"less time to train. Our model achieves 28.4 BLEU on the WMT 2014 English-
+to-German translation task, improving over the existing best results, including
+ensembles, by over 2 BLEU. On the WMT 2014 English-to-French translation task,
+our model establishes a new single-model state-of-the-art BLEU score of 41.8 after
+training for 3.5 days on eight GPUs, a small fraction of the training costs of the
+best models from the literature. We show that the Transformer generalizes well to",0.1357
+Which optimizer was used to train the model?,5,"performing models also connect the encoder and decoder through an attention
+mechanism. We propose a new simple network architecture, the Transformer,
+based solely on attention mechanisms, dispensing with recurrence and convolutions
+entirely. Experiments on two machine translation tasks show these models to
+be superior in quality while being more parallelizable and requiring significantly
+less time to train. Our model achieves 28.4 BLEU on the WMT 2014 English-",0.1139
+What is label smoothing?,1,"Label Smoothing During training, we employed label smoothing of value ϵls = 0.1 [36]. This
+hurts perplexity, as the model learns to be more unsure, but improves accuracy and BLEU score.
+6 Results
+6.1 Machine Translation
+On the WMT 2014 English-to-German translation task, the big transformer model (Transformer (big)
+in Table 2) outperforms the best previously reported models (including ensembles) by more than 2.0",0.4875
+What is label smoothing?,2,"Transformer (base model) 27.3 38.1 3.3 · 1018
+Transformer (big) 28.4 41.8 2.3 · 1019
+Residual Dropout We apply dropout [33] to the output of each sub-layer, before it is added to the
+sub-layer input and normalized. In addition, we apply dropout to the sums of the embeddings and the
+positional encodings in both the encoder and decoder stacks. For the base model, we use a rate of
+Pdrop = 0.1.
+Label Smoothing During training, we employed label smoothing of value ϵls = 0.1 [36]. This",0.417
+What is label smoothing?,3,"opinion
+.
+<EOS>
+<pad>
+The
+Law
+will
+never
+be
+perfect
+,
+but
+its
+application
+should
+be
+just
+-
+this
+is
+what
+we
+are
+missing
+,
+in
+my
+opinion
+.
+<EOS>
+<pad>
+Figure 4: Two attention heads, also in layer 5 of 6, apparently involved in anaphora resolution. Top:
+Full attentions for head 5. Bottom: Isolated attentions from just the word ‘its’ for attention heads 5
+and 6. Note that the attentions are very sharp for this word.
+14
+Input-Input Layer5
+The
+Law
+will
+never
+be
+perfect
+,
+but
+its
+application
+should
+be",0.0
+What is label smoothing?,4,"13
+Input-Input Layer5
+The
+Law
+will
+never
+be
+perfect
+,
+but
+its
+application
+should
+be
+just
+-
+this
+is
+what
+we
+are
+missing
+,
+in
+my
+opinion
+.
+<EOS>
+<pad>
+The
+Law
+will
+never
+be
+perfect
+,
+but
+its
+application
+should
+be
+just
+-
+this
+is
+what
+we
+are
+missing
+,
+in
+my
+opinion
+.
+<EOS>
+<pad>
+Input-Input Layer5
+The
+Law
+will
+never
+be
+perfect
+,
+but
+its
+application
+should
+be
+just
+-
+this
+is
+what
+we
+are
+missing
+,
+in
+my
+opinion
+.
+<EOS>
+<pad>
+The
+Law
+will
+never
+be
+perfect
+,
+but
+its
+application
+should
+be
+just
+-
+this
+is",0.0
+What is label smoothing?,5,"opinion
+.
+<EOS>
+<pad>
+The
+Law
+will
+never
+be
+perfect
+,
+but
+its
+application
+should
+be
+just
+-
+this
+is
+what
+we
+are
+missing
+,
+in
+my
+opinion
+.
+<EOS>
+<pad>
+Figure 5: Many of the attention heads exhibit behaviour that seems related to the structure of the
+sentence. We give two such examples above, from two different heads from the encoder self-attention
+at layer 5 of 6. The heads clearly learned to perform different tasks.
+15",0.0
+How does the Transformer improve parallelization?,1,"In this work we propose the Transformer, a model architecture eschewing recurrence and instead
+relying entirely on an attention mechanism to draw global dependencies between input and output.
+The Transformer allows for significantly more parallelization and can reach a new state of the art in
+translation quality after being trained for as little as twelve hours on eight P100 GPUs.
+2 Background
+The goal of reducing sequential computation also forms the foundation of the Extended Neural GPU",0.1876
+How does the Transformer improve parallelization?,2,"6
+length n is smaller than the representation dimensionality d, which is most often the case with
+sentence representations used by state-of-the-art models in machine translations, such as word-piece
+[38] and byte-pair [31] representations. To improve computational performance for tasks involving
+very long sequences, self-attention could be restricted to considering only a neighborhood of size r in
+the input sequence centered around the respective output position. This would increase the maximum",0.124
+How does the Transformer improve parallelization?,3,"architectures [38, 24, 15].
+Recurrent models typically factor computation along the symbol positions of the input and output
+sequences. Aligning the positions to steps in computation time, they generate a sequence of hidden
+states ht, as a function of the previous hidden state ht−1 and the input for position t. This inherently
+sequential nature precludes parallelization within training examples, which becomes critical at longer",0.112
+How does the Transformer improve parallelization?,4,"Computational Linguistics and 44th Annual Meeting of the ACL , pages 433–440. ACL, July
+2006.
+[30] Ofir Press and Lior Wolf. Using the output embedding to improve language models. arXiv
+preprint arXiv:1608.05859, 2016.
+[31] Rico Sennrich, Barry Haddow, and Alexandra Birch. Neural machine translation of rare words
+with subword units. arXiv preprint arXiv:1508.07909, 2015.
+[32] Noam Shazeer, Azalia Mirhoseini, Krzysztof Maziarz, Andy Davis, Quoc Le, Geoffrey Hinton,",0.0867
+How does the Transformer improve parallelization?,5,"To the best of our knowledge, however, the Transformer is the first transduction model relying
+entirely on self-attention to compute representations of its input and output without using sequence-
+aligned RNNs or convolution. In the following sections, we will describe the Transformer, motivate
+self-attention and discuss its advantages over models such as [17, 18] and [9].
+3 Model Architecture
+Most competitive neural sequence transduction models have an encoder-decoder structure [5, 2, 35].",0.0724
+What were the experimental results of the Transformer?,1,"Transformer (4 layers) semi-supervised 92.7
+Luong et al. (2015) [23] multi-task 93.0
+Dyer et al. (2016) [8] generative 93.3
+increased the maximum output length to input length + 300. We used a beam size of 21 and α = 0.3
+for both WSJ only and the semi-supervised setting.
+Our results in Table 4 show that despite the lack of task-specific tuning our model performs sur-
+prisingly well, yielding better results than all previously reported models with the exception of the",0.2098
+What were the experimental results of the Transformer?,2,"Label Smoothing During training, we employed label smoothing of value ϵls = 0.1 [36]. This
+hurts perplexity, as the model learns to be more unsure, but improves accuracy and BLEU score.
+6 Results
+6.1 Machine Translation
+On the WMT 2014 English-to-German translation task, the big transformer model (Transformer (big)
+in Table 2) outperforms the best previously reported models (including ensembles) by more than 2.0",0.2084
+What were the experimental results of the Transformer?,3,"sinusoidal positional encoding with learned positional embeddings [9], and observe nearly identical
+results to the base model.
+6.3 English Constituency Parsing
+To evaluate if the Transformer can generalize to other tasks we performed experiments on English
+constituency parsing. This task presents specific challenges: the output is subject to strong structural
+constraints and is significantly longer than the input. Furthermore, RNN sequence-to-sequence",0.1519
+What were the experimental results of the Transformer?,4,"less time to train. Our model achieves 28.4 BLEU on the WMT 2014 English-
+to-German translation task, improving over the existing best results, including
+ensembles, by over 2 BLEU. On the WMT 2014 English-to-French translation task,
+our model establishes a new single-model state-of-the-art BLEU score of 41.8 after
+training for 3.5 days on eight GPUs, a small fraction of the training costs of the
+best models from the literature. We show that the Transformer generalizes well to",0.1444
+What were the experimental results of the Transformer?,5,"constraints and is significantly longer than the input. Furthermore, RNN sequence-to-sequence
+models have not been able to attain state-of-the-art results in small-data regimes [37].
+We trained a 4-layer transformer with dmodel = 1024on the Wall Street Journal (WSJ) portion of the
+Penn Treebank [25], about 40K training sentences. We also trained it in a semi-supervised setting,
+using the larger high-confidence and BerkleyParser corpora from with approximately 17M sentences",0.143
